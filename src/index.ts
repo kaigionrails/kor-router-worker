@@ -8,6 +8,8 @@
  * Learn more at https://developers.cloudflare.com/workers/
  */
 
+import { proxy, redirectToCurrentEvent } from './proxy';
+
 export interface Env {
 	// Example binding to KV. Learn more at https://developers.cloudflare.com/workers/runtime-apis/kv/
 	// MY_KV_NAMESPACE: KVNamespace;
@@ -27,6 +29,11 @@ export interface Env {
 
 export default {
 	async fetch(request: Request, env: Env, ctx: ExecutionContext): Promise<Response> {
-		return new Response('Hello World!');
+		const requestUrl = new URL(request.url);
+		if (requestUrl.pathname == '/') {
+			return redirectToCurrentEvent();
+		} else {
+			return proxy(request);
+		}
 	},
 };
