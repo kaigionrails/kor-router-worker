@@ -9,6 +9,7 @@
  */
 
 import { proxy, redirectToCurrentEvent } from './proxy';
+import { wellknownResponse } from './wellknown';
 
 export interface Env {
 	// Example binding to KV. Learn more at https://developers.cloudflare.com/workers/runtime-apis/kv/
@@ -32,6 +33,8 @@ export default {
 		const requestUrl = new URL(request.url);
 		if (requestUrl.pathname == '/') {
 			return redirectToCurrentEvent();
+		} else if (requestUrl.pathname.startsWith('/.well-known/')) {
+			return wellknownResponse(requestUrl.pathname);
 		} else {
 			return proxy(request);
 		}
