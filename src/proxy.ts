@@ -4,6 +4,17 @@ const CURRENT_EVENT_PATH = `/${CURRENT_EVENT}`;
 const PAST_EVENT_HOST = 'past.kaigionrails.org';
 const KAIGIONRAILS_ORG = 'kaigionrails.org';
 
+const INDEX = `<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="refresh" content="0;URL=${CURRENT_EVENT_PATH}/">
+  </head>
+  <body>
+    <a href="${CURRENT_EVENT_PATH}/">Kaigi on Rails ${CURRENT_EVENT}</a>
+  </body>
+</html>
+`;
+
 const proxy = async (req: Request): Promise<Response> => {
 	const requestUrl = new URL(req.url);
 	if (requestUrl.pathname.startsWith(CURRENT_EVENT_PATH)) {
@@ -30,8 +41,11 @@ const proxy = async (req: Request): Promise<Response> => {
 };
 
 const redirectToCurrentEvent = (): Response => {
-	const url = new URL(`${CURRENT_EVENT_PATH}/`, `https://${KAIGIONRAILS_ORG}`);
-	return Response.redirect(url.toString(), 302);
+	return new Response(INDEX, {
+		headers: {
+			'content-type': 'text/html;charset=UTF-8',
+		},
+	});
 };
 
 export { proxy, redirectToCurrentEvent };
