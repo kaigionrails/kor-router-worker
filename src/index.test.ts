@@ -11,9 +11,9 @@ describe('worker', () => {
 	});
 
 	test('GET /', async () => {
-		const response = await worker.fetch('/', { redirect: 'manual' });
-		expect(response.status).toBe(302);
-		expect(response.headers.get('Location')).toBe('https://kaigionrails.org/2024/');
+		const response = await worker.fetch('/');
+		expect(response.status).toBe(200);
+		expect(await response.text()).toContain(`<meta http-equiv="refresh" content="0;URL=/2024/">`);
 	});
 
 	describe('2024 (current event)', () => {
@@ -78,4 +78,19 @@ describe('worker', () => {
 			expect(response.redirected).toBe(false);
 		});
 	});
+
+	describe('well-known', () => {
+		test("GET /.well-known/atproto-did", async () => {
+			const response = await worker.fetch('/.well-known/atproto-did');
+			expect(response.status).toBe(200);
+			expect(await response.text()).toContain('did:plc:');
+			expect(response.headers.get('content-type')).toBe('text/plain;charset=UTF-8');
+		})
+		test("GET /.well-known/unknown", async () => {
+			const response = await worker.fetch('/.well-known/unknown');
+			expect(response.status).toBe(404);
+			expect(await response.text()).toContain('Not Found');
+			expect(response.headers.get('content-type')).toBe('text/plain;charset=UTF-8');
+		})
+	})
 });
