@@ -1,4 +1,4 @@
-const ATPROTO_DID = `did:plc:samplesamplesample`; // TODO
+const ATPROTO_DID = `did:plc:6lavh3p57yy2aeq2ikjfhzzy`;
 
 const wellknownHandler = (path: string): { body: string; contentType: string; status: number } => {
 	if (path === `/.well-known/atproto-did`) {
