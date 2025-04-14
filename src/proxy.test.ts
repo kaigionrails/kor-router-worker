@@ -1,8 +1,8 @@
 import { expect, test, describe, beforeAll, afterAll } from 'vitest';
-import { UnstableDevWorker, unstable_dev } from 'wrangler';
+import { unstable_dev, type Unstable_DevWorker } from 'wrangler';
 
 describe('worker', () => {
-	let worker: UnstableDevWorker;
+	let worker: Unstable_DevWorker;
 	beforeAll(async () => {
 		worker = await unstable_dev('./src/index.ts', { logLevel: 'info', experimental: { disableExperimentalWarning: true } });
 	});
