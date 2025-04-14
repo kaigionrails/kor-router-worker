@@ -8,6 +8,7 @@ const INDEX = `<!DOCTYPE html>
 <html>
   <head>
     <meta http-equiv="refresh" content="0;URL=${CURRENT_EVENT_PATH}/">
+    <link rel='me' href='https://ruby.social/@kaigionrails'>
   </head>
   <body>
     <a href="${CURRENT_EVENT_PATH}/">Kaigi on Rails ${CURRENT_EVENT}</a>
