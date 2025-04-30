@@ -23,17 +23,10 @@ describe('worker', () => {
 			expect(response.redirected).toBe(true);
 		});
 
-		test('GET /2024/', async () => {
+		test('GET /2025/', async () => {
 			const response = await worker.fetch('/2025/');
 			expect(await response.text()).toContain('Kaigi on Rails 2025');
-			expect(response.redirected).toBe(true);
-		});
-
-		test('GET /2025/index.html', async () => {
-			const response = await worker.fetch('/2025/index.html');
-			expect(await response.text()).toContain('Kaigi on Rails 2025');
-			expect(response.url).toBe('https://kaigionrails.org/2025/index.html');
-			expect(response.redirected).toBe(true);
+			expect(response.redirected).toBe(false);
 		});
 	});
 
