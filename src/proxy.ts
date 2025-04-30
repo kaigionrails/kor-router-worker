@@ -1,4 +1,4 @@
-const CURRENT_EVENT = '2024';
+const CURRENT_EVENT = '2025';
 const CURRENT_EVENT_HOST = `${CURRENT_EVENT}.kaigionrails.org`;
 const CURRENT_EVENT_PATH = `/${CURRENT_EVENT}`;
 const PAST_EVENT_HOST = 'past.kaigionrails.org';

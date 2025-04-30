@@ -13,26 +13,26 @@ describe('worker', () => {
 	test('GET /', async () => {
 		const response = await worker.fetch('/');
 		expect(response.status).toBe(200);
-		expect(await response.text()).toContain(`<meta http-equiv="refresh" content="0;URL=/2024/">`);
+		expect(await response.text()).toContain(`<meta http-equiv="refresh" content="0;URL=/2025/">`);
 	});
 
-	describe('2024 (current event)', () => {
-		test('GET /2024', async () => {
-			const response = await worker.fetch('/2024');
-			expect(await response.text()).toContain('Kaigi on Rails 2024');
+	describe('2025 (current event)', () => {
+		test('GET /2025', async () => {
+			const response = await worker.fetch('/2025');
+			expect(await response.text()).toContain('Kaigi on Rails 2025');
 			expect(response.redirected).toBe(true);
 		});
 
 		test('GET /2024/', async () => {
-			const response = await worker.fetch('/2024/');
-			expect(await response.text()).toContain('Kaigi on Rails 2024');
+			const response = await worker.fetch('/2025/');
+			expect(await response.text()).toContain('Kaigi on Rails 2025');
 			expect(response.redirected).toBe(true);
 		});
 
-		test('GET /2024/index.html', async () => {
-			const response = await worker.fetch('/2024/index.html');
-			expect(await response.text()).toContain('Kaigi on Rails 2024');
-			expect(response.url).toBe('https://kaigionrails.org/2024/index.html');
+		test('GET /2025/index.html', async () => {
+			const response = await worker.fetch('/2025/index.html');
+			expect(await response.text()).toContain('Kaigi on Rails 2025');
+			expect(response.url).toBe('https://kaigionrails.org/2025/index.html');
 			expect(response.redirected).toBe(true);
 		});
 	});
