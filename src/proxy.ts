@@ -43,6 +43,7 @@ const proxy = async (req: Request): Promise<Response> => {
 
 const redirectToCurrentEvent = (): Response => {
 	return new Response(INDEX, {
+		status: 302,
 		headers: {
 			'content-type': 'text/html;charset=UTF-8',
 			'location': `https://${KAIGIONRAILS_ORG}${CURRENT_EVENT_PATH}/`,

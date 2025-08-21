@@ -11,9 +11,10 @@ describe('worker', () => {
 	});
 
 	test('GET /', async () => {
-		const response = await worker.fetch('/');
-		expect(response.status).toBe(200);
+		const response = await worker.fetch('/', { redirect: 'manual' });
+		expect(response.status).toBe(302);
 		expect(await response.text()).toContain(`<meta http-equiv="refresh" content="0;URL=/2025/">`);
+		expect(response.headers.get('location')).toBe('https://kaigionrails.org/2025/');
 	});
 
 	describe('2025 (current event)', () => {
