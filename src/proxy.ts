@@ -45,6 +45,7 @@ const redirectToCurrentEvent = (): Response => {
 	return new Response(INDEX, {
 		headers: {
 			'content-type': 'text/html;charset=UTF-8',
+			'location': `https://${KAIGIONRAILS_ORG}${CURRENT_EVENT_PATH}/`,
 		},
 	});
 };
