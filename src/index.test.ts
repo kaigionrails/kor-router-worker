@@ -13,20 +13,20 @@ describe('worker', () => {
 	test('GET /', async () => {
 		const response = await worker.fetch('/', { redirect: 'manual' });
 		expect(response.status).toBe(302);
-		expect(await response.text()).toContain(`<meta http-equiv="refresh" content="0;URL=/2025/">`);
-		expect(response.headers.get('location')).toBe('https://kaigionrails.org/2025/');
+		expect(await response.text()).toContain(`<meta http-equiv="refresh" content="0;URL=/2026/">`);
+		expect(response.headers.get('location')).toBe('https://kaigionrails.org/2026/');
 	});
 
-	describe('2025 (current event)', () => {
-		test('GET /2025', async () => {
-			const response = await worker.fetch('/2025');
-			expect(await response.text()).toContain('Kaigi on Rails 2025');
+	describe('current event', () => {
+		test('GET /2026', async () => {
+			const response = await worker.fetch('/2026');
+			expect(await response.text()).toContain('Kaigi on Rails 2026');
 			expect(response.redirected).toBe(true);
 		});
 
-		test('GET /2025/', async () => {
-			const response = await worker.fetch('/2025/');
-			expect(await response.text()).toContain('Kaigi on Rails 2025');
+		test('GET /2026/', async () => {
+			const response = await worker.fetch('/2026/');
+			expect(await response.text()).toContain('Kaigi on Rails 2026');
 			expect(response.redirected).toBe(false);
 		});
 	});
